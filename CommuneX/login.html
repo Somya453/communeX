@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <input type="email" id="email" placeholder="Enter Email" required>
+            <input type="password" id="password" placeholder="Enter Password" required>
+            <button type="submit">Login</button>
+        </form>
+        <p>Don't have an account? <a href="signup.html">Sign up here</a></p>
+    </div>
+
+
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", async function (event) {
+            event.preventDefault();
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+
+            const response = await fetch("http://localhost:5000/api/login", {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({email, password})
+            });
+
+            const data = await response.json();
+            if (response.ok) {
+                localStorage.setItem("token", data.token);
+                localStorage.setItem("userEmail", email); // Store user email for tracking issues
+                alert("Login successful! Redirecting to dashboard...");
+                window.location.href = "dashboard.html"; // Redirect to dashboard
+            } else {
+                alert(data.error || "Login failed!");
+            }
+        });
+
+
+    </script>
+</body>
+
+</html>

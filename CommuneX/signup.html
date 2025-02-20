@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Sign Up</h2>
+        <form id="signupForm">
+            <input type="email" id="email" placeholder="Enter Email" required>
+            <input type="password" id="password" placeholder="Enter Password" required>
+            <button type="submit">Register</button>
+        </form>
+        <p>Already have an account? <a href="login.html">Login here</a></p>
+    </div>
+
+    <script>
+        document.getElementById("signupForm").addEventListener("submit", async function(event) {
+            event.preventDefault();
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+
+            const response = await fetch("http://localhost:5000/api/register", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email, password })
+            });
+
+            const data = await response.json();
+            if (response.ok) {
+                alert("Registration successful! Redirecting to login...");
+                window.location.href = "login.html";
+            } else {
+                alert(data.error || "Registration failed!");
+            }
+        });
+    </script>
+</body>
+</html>

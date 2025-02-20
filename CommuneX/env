@@ -1,0 +1,3 @@
+MONGO_URI=mongodb+srv://Ayush:radhee123@community.wrims.mongodb.net/?retryWrites=true&w=majority&appName=community
+PORT=5000
+JWT_SECRET=Ayuu

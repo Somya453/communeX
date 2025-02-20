@@ -1,0 +1,229 @@
+/* General Styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background-image: url(india_3.jpeg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-color: #ffffff;
+    color: #333;
+    text-align: center;
+    position: relative;
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.6);
+    /* Light overlay for better text readability */
+    z-index: -1;
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+p {
+    font-size: 1.3rem;
+}
+
+strong {
+    font-size: 1.5rem;
+}
+
+img {
+    height: 10vh;
+}
+
+/* Navigation Bar */
+nav {
+    background: #012970;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 50px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2em;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: 0.3s ease;
+}
+
+.nav-links li a:hover {
+    background: #011f4b;
+}
+
+.auth-buttons a {
+    background: #ffcc00;
+    color: black;
+    padding: 10px 20px;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.auth-buttons a:hover {
+    background: #e6b800;
+}
+
+/* Image slider */
+.slider-container {
+    position: relative;
+    width: 100vw;
+    max-width: 1000px;
+    margin: auto;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.slider {
+    display: flex;
+    width: 500%; /* Assuming you have 5 images, each taking 100% */
+    transition: transform 0.5s ease-in-out;
+    white-space: nowrap;
+}
+
+.slider img {
+    width: 100vw; /* Each image should take full viewport width */
+    height: 65vh;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+
+/* Navigation Buttons */
+.prev,
+.next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.prev {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
+}
+
+.prev:hover,
+.next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Hero Section */
+.hero {
+    background: #eef5ff;
+    padding: 80px 20px;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 3em;
+    color: #012970;
+}
+
+.hero .slogan {
+    font-size: 1.5em;
+    margin-top: 10px;
+}
+
+.main-btn {
+    background: #ffcc00;
+    color: black;
+    padding: 15px 20px;
+    text-decoration: none;
+    font-size: 1.2em;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: 0.3s ease;
+}
+
+.main-btn:hover {
+    background: #e6b800;
+}
+
+/* Sections */
+section {
+    padding: 50px 20px;
+    width: 80vw;
+    margin: auto;
+}
+
+/* How It Works */
+.steps-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.step {
+    background: #012970;
+    color: white;
+    padding: 20px;
+    width: 30vw;
+    border-radius: 10px;
+    text-align: center;
+}
+
+/* Logo and Emblem */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    position: relative;
+}
+
+.header img {
+    width: 100px;
+    height: auto;
+}
+
+.header h1 {
+    flex-grow: 1;
+    text-align: center;
+    font-size: 2em;
+    color: #012970;
+}
+
+/* Footer */
+footer {
+    background: #012970;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    margin-top: 20px;
+}

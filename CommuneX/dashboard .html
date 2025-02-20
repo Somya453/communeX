@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Government Community Portal</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<style>
+    /* Header Styling */
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: #012970;
+        padding: 10px 20px;
+        position: relative;
+    }
+
+    /* National Emblem on the left */
+    .header-left .emblem {
+        width: 60px;
+        /* Adjust as needed */
+        height: auto;
+    }
+
+    /* CommuneX Logo on the right */
+    .header-right .logo {
+        width: 80px;
+        /* Adjust as needed */
+        height: auto;
+    }
+
+    .chatbot-container {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 1000;
+    }
+
+    .chat-icon {
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, #ff8c00, #ff2e63);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        cursor: pointer;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        transition: 0.3s;
+    }
+
+    .chat-icon:hover {
+        transform: scale(1.1);
+    }
+
+    .chat-window {
+        display: none;
+        width: 350px;
+        height: 500px;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        overflow: hidden;
+        position: absolute;
+        bottom: 70px;
+        right: 0;
+        border: 2px solid #ff2e63;
+    }
+
+    .chat-header {
+        background: #ff2e63;
+        color: white;
+        padding: 15px;
+        text-align: center;
+        font-weight: bold;
+        border-radius: 15px 15px 0 0;
+        font-size: 1.2em;
+    }
+
+    .chat-body {
+        height: 350px;
+        overflow-y: auto;
+        padding: 10px;
+        background: #f4f4f4;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .chat-footer {
+        display: flex;
+        padding: 10px;
+        border-top: 1px solid #ddd;
+        background: #fff;
+    }
+
+    .chat-footer input {
+        flex: 1;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 1em;
+    }
+
+    .chat-footer button {
+        background: #ff2e63;
+        color: white;
+        border: none;
+        padding: 8px;
+        margin-left: 5px;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: 0.3s;
+    }
+
+    .chat-footer button:hover {
+        background: #d92d5a;
+    }
+
+    .message {
+        padding: 10px;
+        border-radius: 10px;
+        margin-bottom: 5px;
+        max-width: 80%;
+        font-size: 0.9em;
+    }
+
+    .user-message {
+        background: #ff2e63;
+        color: white;
+        align-self: flex-end;
+        text-align: right;
+    }
+
+    .bot-message {
+        background: #e6f2ff;
+        color: black;
+        align-self: flex-start;
+        text-align: left;
+    }
+
+    .chat-option {
+        width: 90%;
+        background: #ff2e63;
+        color: white;
+        border: none;
+        padding: 10px;
+        margin: 5px 0;
+        border-radius: 5px;
+        font-size: 1em;
+        cursor: pointer;
+        transition: 0.3s;
+        text-align: center;
+    }
+
+    .chat-option:hover {
+        background: #d92d5a;
+    }
+
+    .nav-right {
+        margin-left: auto;
+        /* Pushes to the right */
+    }
+
+    .profile-menu {
+        position: relative;
+    }
+
+    .profile-menu button {
+        background: white;
+        /* Change color to contrast navbar */
+        color: #014182;
+        /* Match other buttons */
+        border: 2px solid #014182;
+        padding: 10px;
+        font-size: 1.2em;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: 0.3s;
+    }
+
+    .profile-menu button:hover {
+        background: #014182;
+        color: white;
+    }
+
+    /* Dropdown Styling */
+    .logout-dropdown {
+        display: none;
+        position: absolute;
+        right: 0;
+        top: 40px;
+        background: white;
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        width: 120px;
+        text-align: center;
+    }
+
+    .logout-dropdown a {
+        display: block;
+        padding: 10px;
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .logout-dropdown a:hover {
+        background: #014182;
+    }
+
+    nav ul {
+        display: flex;
+        align-items: center;
+        list-style: none;
+        padding: 0;
+    }
+
+    nav ul li {
+        margin-right: 15px;
+    }
+</style>
+
+<body style="background-image: url(sevaa.jpg);">
+    <!-- Header Section -->
+    <!-- <header>Welcome to Our Government Community Portal</header> -->
+    <header>
+        <div class="header-left">
+            <img src="emblem.jpg" alt="National Emblem of India" class="emblem">
+        </div>
+        <header>Welcome to Our Government Community Portal</header>
+        <div class="header-right">
+            <img src="commune.jpg" alt="CommuneX Logo" class="logo">
+        </div>
+    </header>
+
+    <button class="emergency-btn" onclick="handleEmergency()">🚨 Emergency</button>
+
+
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#reports">Reports</a></li>
+            <li><a href="#events">Events</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#Business">Business</a></li>
+
+
+            <!-- Right Side Menu -->
+            <div class="nav-right">
+                <li class="profile-menu">
+                    <button onclick="toggleLogoutMenu()">👤</button>
+                    <div id="logoutMenu" class="logout-dropdown">
+                        <a href="#" onclick="logoutUser()">Logout</a>
+                    </div>
+                </li>
+            </div>
+        </ul>
+    </nav>
+
+
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <h2 style="text-align: center; font-size: 35px;">Welcome to the Dashboard</h2>
+            <p style="text-align: center;"><b>Here, you can access all community services.</b></p>
+
+            <!-- Report an Issue Section -->
+            <section id="report">
+                <h2>Report an Issue</h2>
+                <p>Submit issues related to the community. Our team will review and take action.</p>
+                <form id="issueForm">
+                    <label for="issueTitle">Issue Title</label>
+                    <input type="text" id="issueTitle" placeholder="Enter Issue Title" required>
+
+                    <label for="issueCategory">Category</label>
+                    <select id="issueCategory">
+                        <option value="infrastructure">Infrastructure</option>
+                        <option value="sanitation">Sanitation</option>
+                        <option value="law">Law & Order</option>
+                        <option value="other">Other</option>
+                    </select>
+
+                    <label for="issueDescription">Description</label>
+                    <textarea id="issueDescription" placeholder="Describe the issue..." required></textarea>
+
+                    <label for="issueImage">Upload Image (Optional)</label>
+                    <input type="file" id="issueImage" accept="image/*">
+
+                    <button type="submit">Submit Report</button>
+                </form>
+                <p id="successMessage" style="color: green; display: none;">Issue reported successfully!</p>
+            </section>
+
+            <!-- Community Events Section -->
+            <section id="events">
+                <h2>Community Events</h2>
+                <form id="eventForm">
+                    <input type="text" id="eventTitle" placeholder="Event Name" required>
+                    <input type="date" id="eventDate" required>
+                    <textarea id="eventDescription" placeholder="Event Details..." required></textarea>
+                    <button type="submit">Post Event</button>
+                </form>
+                <p id="eventSuccessMessage" style="color: green; display: none;">Event posted successfully!</p>
+                <h3>Upcoming Events</h3>
+                <div id="eventsList"></div>
+            </section>
+
+            <!-- Service Exchange Section -->
+            <section id="services">
+                <h2>Service Exchange</h2>
+
+                <form id="serviceForm">
+                    <input type="text" id="serviceTitle" placeholder="Service Title" required>
+                    <textarea id="serviceDescription" placeholder="Describe the service..." required></textarea>
+                    <select id="serviceType" required>
+                        <option value="Offer">Offering a Service</option>
+                        <option value="Request">Requesting a Service</option>
+                    </select>
+                    <button type="submit">Post Service</button>
+                </form>
+
+                <p id="serviceSuccessMessage" style="color: green; display: none;">Service posted successfully!</p>
+
+                <h3>Popular Services</h3>
+                <div class="service-categories">
+                    <div class="service-card">
+                        <img src="tuition.jpg" alt="Tuition">
+                        <h4>Local Tuition</h4>
+                        <p>Find or offer tutoring services for various subjects.</p>
+                    </div>
+
+                    <div class="service-card">
+                        <img src="handyman.jpg" alt="Handyman">
+                        <h4>Handyman Services</h4>
+                        <p>Help with plumbing, repairs, electrical work, and more.</p>
+                    </div>
+
+                    <div class="service-card">
+                        <img src="library.jpg" alt="Library">
+                        <h4>Free Library Exchange</h4>
+                        <p>Borrow, lend, or donate books within the community.</p>
+                    </div>
+                </div>
+
+
+                <div id="servicesList"></div>
+            </section>
+
+
+            <!-- Local Business Showcase -->
+            <section id="local">
+                <h2>Support Local Businesses</h2>
+
+                <form id="businessForm">
+                    <input type="text" id="businessName" placeholder="Business Name" required>
+                    <textarea id="businessDescription" placeholder="Business Description..." required></textarea>
+                    <input type="file" id="businessImage" accept="image/*">
+                    <button type="submit">Submit Business</button>
+                </form>
+
+                <p id="businessSuccessMessage" style="color: green; display: none;">Business added successfully!</p>
+
+                <h3>Featured Local Businesses</h3>ss
+                <div class="business-showcase">
+                    <div class="business-card">
+                        <img src="bakery.jpg" alt="Bakery">
+                        <h4>Sweet Treats Bakery</h4>
+                        <p>Freshly baked goods made with love. Order now!</p>
+                    </div>
+
+                    <div class="business-card">
+                        <img src="handicraft.jpg" alt="Handicrafts">
+                        <h4>Handmade Wonders</h4>
+                        <p>Unique, handcrafted home decor and gifts.</p>
+                    </div>
+
+                    <div class="business-card">
+                        <img src="organic.jpg" alt="Organic">
+                        <h4>Fresh & Organic</h4>
+                        <p>Locally grown organic vegetables and fruits.</p>
+                    </div>
+                </div>
+            </section>
+
+            <aside id="live-dashboard">
+                <div class="dashboard-header">
+                    <h2>Live Dashboard</h2>
+                    <span class="close-btn" onclick="closeDashboard()">❌</span>
+                </div>
+                <div id="dashboard-content">
+                    <p>Updated reports and events displayed here.</p>
+                </div>
+                <p id="last-updated">Last updated: Just now</p>
+                <button onclick="refreshDashboard()">Refresh Now</button>
+                <button onclick="viewMoreUpdates()">View More</button>
+            </aside>
+
+            <!-- Styling -->
+            <style>
+                #live-dashboard {
+                    position: fixed;
+                    right: 20px;
+                    top: 180px;
+                    width: 320px;
+                    background: white;
+                    padding: 15px;
+                    border-radius: 8px;
+                    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+                    z-index: 999;
+                    transition: all 0.3s ease-in-out;
+                }
+
+                #live-dashboard h2 {
+                    color: #004d99;
+                    text-align: center;
+                    margin-bottom: 10px;
+                }
+
+                .dashboard-header {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    border-bottom: 1px solid #ddd;
+                    padding-bottom: 5px;
+                    margin-bottom: 10px;
+                }
+
+                .close-btn {
+                    cursor: pointer;
+                    font-size: 1.2em;
+                    color: red;
+                    font-weight: bold;
+                    transition: 0.3s;
+                }
+
+                .close-btn:hover {
+                    color: darkred;
+                }
+
+                #dashboard-content {
+                    background: #e6f2ff;
+                    padding: 15px;
+                    border-radius: 5px;
+                    min-height: 100px;
+                    text-align: center;
+                }
+
+                .update {
+                    animation: fadeIn 0.5s ease-in-out;
+                }
+
+                @keyframes fadeIn {
+                    from {
+                        opacity: 0;
+                        transform: translateY(-5px);
+                    }
+
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+
+                #last-updated {
+                    font-size: 0.9em;
+                    color: #555;
+                    text-align: center;
+                    margin-top: 5px;
+                }
+
+                #live-dashboard button {
+                    display: block;
+                    width: 100%;
+                    background: #014182;
+                    color: white;
+                    border: none;
+                    padding: 10px;
+                    border-radius: 5px;
+                    font-size: 1em;
+                    cursor: pointer;
+                    transition: 0.3s;
+                    margin-top: 10px;
+                }
+
+                #live-dashboard button:hover {
+                    background: #012970;
+                }
+            </style>
+            <!-- JavaScript for Live Updates -->
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Government Community Portal. All rights reserved.</p>
+    </footer>
+
+    <div class="chatbot-container">
+        <div class="chat-icon" onclick="toggleChat()">💬</div>
+        <div class="chat-window">
+            <div class="chat-header">CommuneX AI Chatbot</div>
+            <div class="chat-body" id="chatBody">
+                <p>Select an option:</p>
+                <button class="chat-option" onclick="handleOption('report')">📢 Report an Issue</button>
+                <button class="chat-option" onclick="handleOption('services')">🛠 Community Services</button>
+                <button class="chat-option" onclick="handleOption('events')">📅 Upcoming Events</button>
+                <button class="chat-option" onclick="handleOption('contact')">📞 Contact Support</button>
+            </div>
+            <div class="chat-footer">
+                <input type="text" id="userInput" placeholder="Type a message..." />
+                <button onclick="sendMessage()">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- WebSockets & JavaScript -->
+    <script src="https://cdn.socket.io/4.4.1/socket.io.min.js"></script>
+    <script>
+        let pastUpdates = [];
+
+        function refreshDashboard() {
+            const dashboardContent = document.getElementById("dashboard-content");
+            const lastUpdated = document.getElementById("last-updated");
+
+            // Simulate fetching new data
+            dashboardContent.innerHTML = "<p>Fetching latest updates...</p>";
+
+            setTimeout(() => {
+                const updates = [
+                    "\uD83C\uDF1F New community event: Clean-up Drive!",
+                    "\u26A1 Emergency alert: Water supply issue reported.",
+                    "\uD83C\uDF1F Local business deal: 20% off at Joe’s Café!",
+                    "\uD83D\uDCA1 Issue resolved: Streetlights in Sector 3 fixed."
+                ];
+                const randomUpdate = updates[Math.floor(Math.random() * updates.length)];
+                pastUpdates.unshift(randomUpdate);
+
+                dashboardContent.innerHTML = `<p class='update'>${randomUpdate}</p>`;
+                lastUpdated.innerText = "Last updated: " + new Date().toLocaleTimeString();
+            }, 1000);
+        }
+
+        function viewMoreUpdates() {
+            alert("Past Updates:\n" + pastUpdates.join("\n"));
+        }
+
+        function closeDashboard() {
+            document.getElementById("live-dashboard").style.display = "none";
+        }
+
+        // Auto-refresh every 30 seconds
+        setInterval(refreshDashboard, 30000);
+        refreshDashboard();
+
+
+
+        const socket = io("http://localhost:5000"); // Connect to WebSocket server
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const token = localStorage.getItem("token");
+            const userEmail = localStorage.getItem("userEmail");
+
+            if (!token || !userEmail) {
+                alert("You must be logged in to access this page!");
+                window.location.href = "login.html";
+                return;
+            }
+
+            loadIssues();
+            loadEvents();
+            loadServices();
+        });
+
+        // Logout Functionality
+        document.getElementById("logout")?.addEventListener("click", function () {
+            localStorage.removeItem("token");
+            localStorage.removeItem("userEmail");
+            alert("You have been logged out!");
+            window.location.href = "login.html";
+        });
+
+        async function fetchAndRenderData(url, elementId, noDataMessage, formatter) {
+            const response = await fetch(url);
+            const data = await response.json();
+            let html = data.length === 0 ? `<p>${noDataMessage}</p>` : "";
+            data.forEach(item => html += formatter(item));
+            document.getElementById(elementId).innerHTML = html;
+        }
+
+        async function loadIssues() {
+            fetchAndRenderData("http://localhost:5000/api/issues", "issuesList", "No reported issues found.", issue => `
+                <div class="issue">
+                    <h4>${issue.title}</h4>
+                    <p>${issue.description}</p>
+                    <p><b>Status:</b> ${issue.status}</p>
+                    <p><b>Reported On:</b> ${new Date(issue.createdAt).toLocaleString()}</p>
+                </div>`);
+        }
+
+        async function loadEvents() {
+            fetchAndRenderData("http://localhost:5000/api/events", "eventsList", "No upcoming events.", event => `
+                <div class="event">
+                    <h4>${event.title}</h4>
+                    <p>${event.description}</p>
+                    <p><b>Date:</b> ${new Date(event.date).toLocaleDateString()}</p>
+                    <p><b>Organizer:</b> ${event.email}</p>
+                </div>`);
+        }
+
+        async function loadServices() {
+            fetchAndRenderData("http://localhost:5000/api/services", "servicesList", "No services available.", service => `
+                <div class="service">
+                    <h4>${service.title}</h4>
+                    <p>${service.description}</p>
+                    <p><b>Type:</b> ${service.type}</p>
+                    <p><b>Posted By:</b> ${service.email}</p>
+                </div>`);
+        }
+
+        // Real-time updates using WebSockets
+        socket.on("new_issue", loadIssues);
+        socket.on("new_event", loadEvents);
+        socket.on("new_service", loadServices);
+
+
+        function toggleChat() {
+            const chatWindow = document.querySelector(".chat-window");
+            chatWindow.style.display = chatWindow.style.display === "block" ? "none" : "block";
+        }
+
+        function handleOption(option) {
+            const chatBody = document.getElementById("chatBody");
+            let botResponse = "";
+
+            switch (option) {
+                case 'report':
+                    botResponse = "To report an issue, go to the 'Report an Issue' section and fill out the form.";
+                    break;
+                case 'services':
+                    botResponse = "We offer community service exchanges and event management!";
+                    break;
+                case 'events':
+                    botResponse = "Check out the 'Community Events' section for upcoming events in your area.";
+                    break;
+                case 'contact':
+                    botResponse = "You can reach support via email at support@communex.com or call +1234567890.";
+                    break;
+                default:
+                    botResponse = "I'm here to assist you! Choose an option above.";
+            }
+            chatBody.innerHTML += `<div class='message bot-message'>${botResponse}</div>`;
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
+        // Close menu if clicked outside
+        document.addEventListener("click", function (event) {
+            const profileMenu = document.querySelector(".profile-menu button");
+            const menu = document.getElementById("logoutMenu");
+
+            if (!profileMenu.contains(event.target) && !menu.contains(event.target)) {
+                menu.style.display = "none";
+            }
+        });
+
+        function logoutUser() {
+            alert("Logging out...");
+            window.location.href = "login.html"; // Redirect to login page
+        }
+    </script>
+</body>
+
+</html>

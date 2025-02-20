@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CommuneX - A Futuristic Take on Community Exchange</title>
+    <link rel="stylesheet" href="home.css">
+</head>
+
+<body>
+    <div class="header">
+        <img src="emblem.jpg" alt="Government Emblem">
+        <h1>Welcome to Our Government Community Portal</h1>
+        <img src="commune.jpg" alt="CommuneX Logo">
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="logo">CommuneX</div>
+        <ul class="nav-links">
+            <li><a href="#problem">Problem Statement</a></li>
+            <li><a href="#about">Why CommuneX?</a></li>
+            <li><a href="#how-it-works">How It Works</a></li>
+            <li><a href="#services">Community Services</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="auth-buttons">
+            <a href="login.html" class="btn">Login</a>
+            <a href="signup.html" class="btn">Register</a>
+        </div>
+        <a href="signup.html" class="join-now">Join Now</a>
+
+    </nav>
+    <style>
+        /* Hero Section Styling */
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+
+        .hero .bg-images {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .hero .bg-images img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+        }
+
+        /* Active image will be visible */
+        .hero .bg-images img.active {
+            opacity: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .hero .slogan {
+            font-size: 1.5rem;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+        }
+    </style>
+
+    <!-- Hero Section -->
+    <div class=".slider-container">
+        <div class="slider">
+            <img src="india_1.jpg">
+            <img src="india_2.jpg">
+            <img src="india_6.jpeg">
+            <img src="india_4.jpeg">
+            <img src="india_5.jpeg">
+
+        </div>
+        <button class="prev" onclick="prevSlide()">&#10094;</button>
+        <button class="next" onclick="nextSlide()">&#10095;</button>
+    </div>
+    </div>
+
+    <h1>CommuneX</h1>
+    <p class="slogan">A Futuristic Take on Community Exchange</p>
+    <p>Connecting local communities through smarter solutions.</p>
+    <br><br>
+    <a href="signup.html" class="main-btn">Join Now</a>
+    </section>
+
+    <script>
+        let currentIndex = 0;
+        const images = document.querySelectorAll(".slider img");
+        const totalImages = images.length;
+
+        function showSlide(index) {
+            if (index >= totalImages) {
+                currentIndex = 0;
+            } else if (index < 0) {
+                currentIndex = totalImages - 1;
+            } else {
+                currentIndex = index;
+            }
+
+            document.querySelector(".slider").style.transform = `translateX(-${currentIndex * 100}vw)`;
+        }
+
+        function nextSlide() {
+            showSlide(currentIndex + 1);
+        }
+
+        function prevSlide() {
+            showSlide(currentIndex - 1);
+        }
+
+        // Auto-slide every 3 seconds
+        setInterval(nextSlide, 3000);
+
+
+    </script>
+
+
+
+    <!-- Problem Statement -->
+    <section id="problem">
+        <h2>🚨 The Problem CommuneX Solves</h2>
+        <br>
+
+        <p>
+            Communities are the backbone of society, but managing community-related services, events, and concerns
+            remains highly inefficient and fragmented. People often struggle with common issues like finding local
+            services, addressing civic concerns, organizing community events, and staying updated with real-time
+            changes
+            in their locality. The absence of a unified platform creates significant barriers to efficient
+            communication
+            and collaboration among residents, local authorities, and service providers.
+            <br>
+            <br>
+
+            One of the biggest challenges communities face is **lack of accessibility to local resources**. Whether
+            it’s
+            finding someone for home repairs, volunteering for a social cause, or renting equipment, people often
+            have
+            to rely on word of mouth, social media groups, or scattered directories, which are neither efficient nor
+            reliable.
+            <br>
+            <br>
+
+            Another key issue is the **difficulty in reporting and resolving local issues**. Potholes, broken
+            streetlights, water supply problems, or sanitation issues take time to reach the concerned authorities
+            due
+            to inefficient reporting mechanisms. Even when reported, tracking the status of these complaints is
+            frustrating, leaving residents in the dark about whether their concerns are being addressed.
+            <br>
+            <br>
+
+            Additionally, **community event management remains a major challenge**. Organizing local events such as
+            clean-up drives, blood donation camps, cultural programs, and educational workshops often lacks proper
+            coordination. Limited visibility, lack of participant engagement, and poor communication prevent such
+            initiatives from reaching their full potential.
+            <br>
+            <br>
+
+            Another significant problem is **the underutilization of available skills and resources within a
+            community**. Many individuals and small businesses offer valuable services but struggle to connect with
+            potential customers in their area. A carpenter, tutor, or fitness instructor living nearby may go
+            unnoticed
+            due to the absence of a dedicated platform for local networking and collaboration.
+            <br>
+            <br>
+
+            Real-time updates are another missing element in many communities. Whether it's a sudden power outage,
+            traffic diversion, or emergency situation, residents often find out about these issues through delayed
+            or
+            unreliable sources. A centralized system providing live updates could help communities stay informed and
+            prepared.
+
+            Security and trust also remain concerns in local dealings. Many people hesitate to hire a service
+            provider
+            or participate in a community exchange because of trust issues. Without proper verification and feedback
+            systems, people are reluctant to engage in local exchanges.
+            <br>
+            <br>
+
+            Considering all these challenges, there is a clear need for a **comprehensive, real-time, and
+            interactive
+            platform** that empowers communities to operate more efficiently and collaboratively. This is where
+            **CommuneX** comes in.
+        </p>
+    </section>
+
+
+    <section id="why-communeX">
+        <h2>⚠️ Why Choose CommuneX?</h2>
+        <br>
+
+        <p>CommuneX is a futuristic community exchange platform that simplifies, enhances, and revolutionizes the
+            way communities interact, share resources, and resolve local issues.</p>
+        <br>
+
+
+        <ul>
+            <li>✔ Enabling <strong>real-time issue reporting & tracking</strong></li>
+            <li>✔ Organizing <strong>community-driven events</strong></li>
+            <li>✔ Facilitating <strong>service exchange & support</strong></li>
+            <li>✔ Showcasing <strong>local businesses & entrepreneurs</strong></li>
+        </ul>
+        <br>
+        <br>
+        <h3>1. Unified Community Platform</h3>
+        <p>CommuneX brings together residents, service providers, and local authorities on a single platform,
+            eliminating the fragmentation of communication channels. Whether you need to report an issue, offer a
+            service, or join a community event, everything is accessible from one place.</p>
+        <br>
+        <br>
+        <h3>2. Seamless Service Exchange System</h3>
+        <p>Residents can offer and request services within their community, making it easier to find reliable help
+            nearby. Whether it’s a plumber, a tutor, or a freelance designer, the platform enables secure and
+            verified transactions between community members.</p>
+        <br>
+        <br>
+        <h3>3. Efficient Reporting of Civic Issues</h3>
+        <p>With CommuneX, reporting issues like potholes, garbage collection delays, or malfunctioning streetlights
+            becomes effortless. Users can upload photos, add descriptions, and directly tag local authorities.
+            Additionally, the platform provides real-time tracking of reported issues to ensure transparency and
+            accountability.</p>
+        <br>
+        <br>
+
+        <h3>4. Real-Time Community Updates</h3>
+        <p>Get instant notifications about important local updates such as roadblocks, emergency alerts, electricity
+            or water supply disruptions, and weather conditions. No more waiting for scattered news updates or
+            relying on unreliable sources.</p>
+        <br>
+        <br>
+
+        <h3>5. Enhanced Community Event Management</h3>
+        <p>Organizing and participating in local events has never been easier. CommuneX provides tools for event
+            creation, invitations, reminders, and real-time updates, ensuring better participation and coordination
+            within the community.</p>
+        <br>
+        <br>
+
+        <h3>6. Verified User Profiles for Trust & Security</h3>
+        <p>All users on the platform go through a verification process, reducing the risk of fraud and ensuring a
+            trustworthy environment for service exchange and collaboration. Reviews and ratings further enhance
+            reliability and safety.</p>
+
+        <br>
+        <br>
+        <h3>7. AI-Driven Smart Recommendations</h3>
+        <p>Using AI-based analytics, CommuneX recommends relevant services, upcoming events, and potential
+            collaborations based on user interests and community needs, making local engagement more personalized
+            and effective.</p>
+        <br>
+        <br>
+        <h3>8. Live Dashboard for Local Insights</h3>
+        <p>Residents and local authorities can access real-time statistics and insights about ongoing issues, event
+            participation, and service exchanges, ensuring better decision-making and community planning.</p>
+        <br>
+        <br>
+        <h3>9. User-Friendly Interface with Mobile & Web Support</h3>
+        <p>CommuneX offers a seamless experience across multiple devices, making it easy for users to stay connected
+            whether they’re at home or on the go.</p>
+        <br>
+        <br>
+
+        <h3>10. Empowering Communities for a Sustainable Future</h3>
+        <p>By fostering collaboration and resource-sharing, CommuneX promotes sustainable living. Whether it’s
+            carpooling, donating unused items, or organizing environmental campaigns, the platform encourages
+            responsible community participation.</p>
+        <br>
+        <br>
+
+        <h3>11. Strong Support & Customer Assistance</h3>
+        <p>Users can access FAQs, chatbots, and customer support to resolve any issues or concerns, ensuring a
+            smooth and hassle-free experience.</p>
+        <br>
+        <br>
+
+        <h3>12. Open for Future Integrations & Expansion</h3>
+        <p>CommuneX is designed to evolve, with planned integrations like IoT-based community monitoring,
+            blockchain-based trust mechanisms, and enhanced AI-driven automation to further improve community
+            interactions and governance.</p>
+    </section>
+
+
+    <style>
+        /* Styling for How It Works Section */
+        #how-it-works {
+            background: #f4f4f4;
+            padding: 50px 20px;
+            text-align: center;
+            border-radius: 10px;
+        }
+
+        #how-it-works h2 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .steps-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        .step {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .step:hover {
+            transform: translateY(-5px);
+        }
+
+        .step-number {
+            font-size: 2rem;
+            color: #ff6b00;
+            font-weight: bold;
+        }
+
+        .step h3 {
+            margin: 15px 0 10px;
+            font-size: 1.5rem;
+            color: #444;
+        }
+
+        .step p {
+            color: #666;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 768px) {
+            .steps-container {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works">
+        <h2>📌 How It Works</h2>
+        <div class="steps-container">
+            <div class="step">
+                <span class="step-number">1️⃣</span>
+                <h3>Sign Up & Get Verified</h3>
+                <p>Create a free account, complete your profile, and get verified to ensure a secure community
+                    experience.</p>
+            </div>
+            <div class="step">
+                <span class="step-number">2️⃣</span>
+                <h3>Engage & Take Action</h3>
+                <p>Report local issues, participate in community events, and exchange services with verified members.
+                </p>
+            </div>
+            <div class="step">
+                <span class="step-number">3️⃣</span>
+                <h3>Stay Updated & Collaborate</h3>
+                <p>Receive real-time alerts, interact with local authorities, and contribute to a better neighborhood.
+                </p>
+            </div>
+        </div>
+    </section>
+
+
+    <style>
+        /* Community Services Section Styling */
+        #services {
+            background: linear-gradient(135deg, #ff9a8b, #ff6a88, #ff99ac);
+            padding: 60px 20px;
+            text-align: center;
+            color: #fff;
+            border-radius: 10px;
+        }
+
+        #services h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: bold;
+        }
+
+        .services-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .service-box {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        .service-box:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .service-box h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .service-box p {
+            font-size: 1rem;
+            color: #f1f1f1;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .services-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+
+    <!-- Community Services Section -->
+    <section id="services">
+        <h2>🌟 Community Services & Features</h2>
+        <div class="services-container">
+            <div class="service-box">
+                <h3>🔧 Smart Issue Reporting</h3>
+                <p>Easily report civic issues with images and location tagging. Track resolutions in real-time.</p>
+            </div>
+            <div class="service-box">
+                <h3>📅 Community Events Hub</h3>
+                <p>Stay updated on local events, RSVP instantly, and organize your own community gatherings.</p>
+            </div>
+            <div class="service-box">
+                <h3>🔄 Secure Service Exchange</h3>
+                <p>Find skilled professionals in your area or offer your expertise to neighbors with verified reviews.
+                </p>
+            </div>
+            <div class="service-box">
+                <h3>🏪 Local Business Directory</h3>
+                <p>Discover and support local businesses, explore deals, and grow your community’s economy.</p>
+            </div>
+            <div class="service-box">
+                <h3>🛡️ Verified User Safety</h3>
+                <p>All users go through verification to ensure safe interactions and trust-building within the
+                    community.</p>
+            </div>
+            <div class="service-box">
+                <h3>📢 Real-Time Alerts & Announcements</h3>
+                <p>Receive instant notifications for emergencies, local government updates, and critical information.
+                </p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>📞 Get in Touch</h2>
+        <p><strong>Email:</strong> support@communex.gov</p>
+        <p><strong>Phone:</strong> +91 98765 43210</p>
+        <p><strong>Address:</strong> 123, Smart City Center, New Delhi, India</p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 CommuneX - A Futuristic Take on Community Exchange. All Rights Reserved.</p>
+    </footer>
+    <!-- Code injected by live-server -->
+    <script>
+        // <![CDATA[  <-- For SVG support
+        if ('WebSocket' in window) {
+            (function () {
+                function refreshCSS() {
+                    var sheets = [].slice.call(document.getElementsByTagName("link"));
+                    var head = document.getElementsByTagName("head")[0];
+                    for (var i = 0; i < sheets.length; ++i) {
+                        var elem = sheets[i];
+                        var parent = elem.parentElement || head;
+                        parent.removeChild(elem);
+                        var rel = elem.rel;
+                        if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+                            var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+                            elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+                        }
+                        parent.appendChild(elem);
+                    }
+                }
+                var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+                var address = protocol + window.location.host + window.location.pathname + '/ws';
+                var socket = new WebSocket(address);
+                socket.onmessage = function (msg) {
+                    if (msg.data == 'reload') window.location.reload();
+                    else if (msg.data == 'refreshcss') refreshCSS();
+                };
+                if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+                    console.log('Live reload enabled.');
+                    sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+                }
+            })();
+        }
+        else {
+            console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+        }
+        // ]]>
+    </script>
+</body>
+
+</html>
